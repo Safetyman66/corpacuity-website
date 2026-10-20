@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Corp Acuity | Quantitative Treasury & Market Intelligence</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corp Acuity // Institutional Research & Market Intelligence</title>
   <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- PDF.js library for rendering slides directly -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+
   <style>
     :root {
       --bg: #070a12;
@@ -18,398 +25,350 @@
       --amber: #fbbf24;
       --red: #f87171;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+
+    .container {
+      max-width: 1400px;
+      margin: 1.5rem auto 2rem;
+      padding: 0 1.25rem 4rem;
     }
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      border-bottom: 1px solid var(--border);
-      padding: 1.25rem 2rem;
+
+    .hero-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(8px);
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
     }
-    .brand {
+    h1 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .header-actions {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      padding-top: 0.25rem;
     }
-    .brand img {
-      height: 32px;
-      width: auto;
-    }
-    .nav-badge {
-      font-size: 0.75rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 9999px;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      font-weight: 600;
-    }
-    .nav-badge.unlocked {
-      background: rgba(74, 222, 128, 0.1);
-      color: var(--green);
-      border-color: rgba(74, 222, 128, 0.3);
-    }
-    main {
-      flex: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .hero-tag {
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      line-height: 1.15;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
-      background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .subtitle {
-      font-size: 1.15rem;
+    .pdf-link-btn {
       color: var(--muted);
-      max-width: 720px;
-      line-height: 1.6;
-      margin-bottom: 0.75rem;
-    }
-    .plain-english-explainer {
-      font-size: 0.95rem;
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      border-radius: 8px;
-      padding: 0.65rem 1.2rem;
-      max-width: 760px;
-      line-height: 1.5;
-      margin-bottom: 2rem;
-    }
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 2.5rem;
-    }
-    .btn {
-      padding: 0.85rem 1.75rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
       text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      background: var(--card-bg);
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #04101e;
-    }
-    .btn-primary:hover {
-      background: #7dd3fc;
-      transform: translateY(-1px);
-    }
-    .btn-secondary {
-      background: var(--card-inner);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover {
-      background: var(--card-bg);
+    .pdf-link-btn:hover {
       border-color: var(--accent);
-      transform: translateY(-1px);
+      color: var(--text);
     }
-    /* Macro Environment Live Widget */
-    .macro-panel {
-      width: 100%;
+    .beta-badge {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+    }
+
+    .plain-terms-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.75rem;
-      text-align: left;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.9rem 1.2rem;
+      margin-bottom: 2rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .plain-terms-box strong { color: var(--text); }
+
+    /* PDF Carousel Container */
+    .carousel-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
       margin-bottom: 2.5rem;
     }
-    .macro-panel-header {
+    .carousel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
     }
-    .macro-panel-title {
+    .carousel-title {
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--text);
+    }
+    .carousel-controls {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
-    .macro-status-tag {
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.3rem 0.75rem;
-      border-radius: 6px;
-      background: rgba(251, 191, 36, 0.15);
-      color: var(--amber);
-      border: 1px solid rgba(251, 191, 36, 0.3);
-    }
-    .macro-stats-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-    .stat-box {
+    .carousel-btn {
       background: var(--card-inner);
-      border-radius: 8px;
-      padding: 1rem;
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
-    .stat-value {
-      font-size: 1.25rem;
-      font-weight: 700;
       color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .macro-context-box {
-      background: rgba(15, 23, 42, 0.6);
+    .carousel-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .carousel-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .page-indicator {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .carousel-viewer {
+      background: #020617;
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 1rem 1.25rem;
-      font-size: 0.88rem;
-      line-height: 1.55;
       display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
+      justify-content: center;
+      align-items: center;
+      min-height: 480px;
+      overflow: hidden;
+      position: relative;
     }
-    .macro-context-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
+    #pdf-canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
     }
-    .grid {
+    .viewer-loading {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .grid-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      width: 100%;
-      text-align: left;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
     }
-    .feature-card {
+    .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease;
     }
-    .feature-card h3 {
+    .card:hover { border-color: var(--accent); }
+    .card h3 {
       font-size: 1.15rem;
+      font-weight: 700;
       margin-bottom: 0.5rem;
       color: var(--text);
     }
-    .feature-card p {
-      font-size: 0.9rem;
+    .card p {
       color: var(--muted);
+      font-size: 0.88rem;
       line-height: 1.5;
+      margin-bottom: 1.25rem;
     }
+    .card-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .card-link:hover { text-decoration: underline; }
+
     footer {
       border-top: 1px solid var(--border);
-      padding: 2rem;
+      padding: 2rem 0;
       text-align: center;
       color: var(--muted);
       font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      align-items: center;
-    }
-    footer a {
-      color: var(--muted);
-      text-decoration: underline;
-    }
-    footer a:hover {
-      color: var(--accent);
     }
   </style>
 </head>
 <body>
-  <header>
-    <a href="/" class="brand">
-      <img src="logo.png" alt="Corp Acuity Logo" onerror="this.style.display='none'" />
-      <span>CORP ACUITY</span>
-    </a>
-    <div id="navBadge" class="nav-badge">Beta Platform</div>
-  </header>
 
-  <main>
-    <div class="hero-tag">Systematic Alpha & Exposure Architecture</div>
-    <h1>Institutional Market Intelligence & Quantitative Screener</h1>
-    <p class="subtitle">Strictly governed by 200 EMA breadth and mathematical 2.0R asymmetry floors.</p>
-    <div class="plain-english-explainer">
-      💡 <strong>In plain terms:</strong> We scan 1,600+ liquid US stocks every morning to isolate high-probability momentum setups where the mathematical upside is at least double the risk.
-    </div>
+  <!-- Dynamic Global Nav Header (Injected by nav.js) -->
+  <script src="nav.js?v=4"></script>
 
-    <div class="cta-group">
-      <a href="intel.html" class="btn btn-primary">Open Today's Screener Results ➔</a>
-      <a href="daily_market_intelligence.pdf" target="_blank" class="btn btn-secondary">Open Today's Summary Carousel (PDF)</a>
-    </div>
-
-    <!-- Live Macroenvironment & Seasonality Context Panel -->
-    <div class="macro-panel">
-      <div class="macro-panel-header">
-        <div class="macro-panel-title">
-          <span>🌐 Macro Regime & Seasonal Environment</span>
-        </div>
-        <div id="liveRegimeStatus" class="macro-status-tag">AMBER: ROTATIONAL ACCUMULATION</div>
+  <div class="container">
+    
+    <div class="hero-header">
+      <div>
+        <h1>Daily Institutional Screener & Alpha Engine</h1>
+        <div class="subtitle">Systematic screening with strict 2.0R asymmetry floors and 200 EMA breadth filters.</div>
       </div>
-
-      <div class="macro-stats-row">
-        <div class="stat-box">
-          <div class="stat-label">Universe Breadth (> 200 EMA)</div>
-          <div id="liveBreadth" class="stat-value">52.4%</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">Max Account Exposure</div>
-          <div id="liveExposure" class="stat-value">30% - 60%</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">10Y Yield / WTI Crude</div>
-          <div id="liveCrossAsset" class="stat-value">4.24% / $73.80</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">OPEX Invalidation Clock</div>
-          <div id="liveOpexClock" class="stat-value" style="color:var(--amber);">11 Days</div>
-        </div>
-      </div>
-
-      <div class="macro-context-box">
-        <div class="macro-context-item">
-          <span>📅</span>
-          <div><strong style="color:var(--accent);">Monthly Seasonality:</strong> <span id="seasonalityText">October Volatility & Inflection: Renowned 'bear killer' month. Elevated pre-earnings and OPEX volatility frequently forms major market swing bottoms.</span></div>
-        </div>
-        <div class="macro-context-item">
-          <span>⏱️</span>
-          <div><strong style="color:var(--amber);">Derivatives Window:</strong> <span id="opexContextText">Monthly Options Expiration (OPEX) occurs on the third Friday. Expect dealer gamma positioning, index pinning, and erratic volatility within 7 days of expiration.</span></div>
-        </div>
-        <div class="macro-context-item">
-          <span>⚡</span>
-          <div><strong style="color:var(--red);">Exogenous Shock Radar:</strong> <span id="shockRadarText">10Y Yield & Oil holding within baseline bounds. No acute macro divergence detected.</span></div>
-        </div>
+      
+      <div class="header-actions">
+        <a href="daily_market_intelligence.pdf" target="_blank" class="pdf-link-btn">
+          Direct PDF Download &rarr;
+        </a>
+        <span class="beta-badge">Beta Access</span>
       </div>
     </div>
 
-    <div class="grid">
-      <div class="feature-card">
-        <h3>1. Macro Regime Gate</h3>
-        <p>Market breadth governed by 200 EMA structural filters. Sizing scales down dynamically during corrective distribution to keep dry powder protected.</p>
+    <div class="plain-terms-box">
+      <strong>💡 In plain terms:</strong> We scan 1,600+ liquid US equities every morning to isolate high-probability momentum setups where the mathematical upside is at least double the risk.
+    </div>
+
+    <!-- Active PDF Carousel / Slide Deck Viewer -->
+    <div class="carousel-section">
+      <div class="carousel-header">
+        <div class="carousel-title">📊 Daily Chart Package & Market Posture Deck</div>
+        <div class="carousel-controls">
+          <button id="prev-page" class="carousel-btn" onclick="onPrevPage()" disabled>&larr; Previous</button>
+          <span class="page-indicator">Slide <span id="page-num">1</span> of <span id="page-count">--</span></span>
+          <button id="next-page" class="carousel-btn" onclick="onNextPage()" disabled>Next &rarr;</button>
+        </div>
       </div>
-      <div class="feature-card">
-        <h3>2. 2.0R Asymmetry Floor</h3>
-        <p>Zero low-probability trades. Every generated candidate enforces a strict mathematical minimum of 2x upside potential versus tactical risk budget.</p>
-      </div>
-      <div class="feature-card">
-        <h3>3. Zacks Rank & Catalyst Tracking</h3>
-        <p>Integrated consensus earnings estimate revisions (#1 Strong Buy / #2 Buy) with verified local tenure and blackout warnings for impending earnings.</p>
+      <div class="carousel-viewer" id="viewer-container">
+        <div id="viewer-status" class="viewer-loading">Loading market deck slides...</div>
+        <canvas id="pdf-canvas" style="display: none;"></canvas>
       </div>
     </div>
-  </main>
+
+    <div class="grid-section">
+      <div class="card">
+        <div>
+          <h3>Live Screener Terminal</h3>
+          <p>Access active momentum flags, base resets, pocket pivots, and liquidity sweeps filtered by regime exposure directives.</p>
+        </div>
+        <a href="intel.html" class="card-link">Launch Terminal Gateway &rarr;</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <h3>Institutional Knowledge Base</h3>
+          <p>Explore the full quantitative library of structural mechanics, gamma regimes, and systematic risk governance directives.</p>
+        </div>
+        <a href="knowledge/execution-protocols-risk-governance.html" class="card-link">Read Execution Protocols &rarr;</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <h3>Setup Archetypes & Mechanics</h3>
+          <p>Detailed breakdown of pivot validation, volume exhaustion, cheat entries, and high-tight flag consolidations.</p>
+        </div>
+        <a href="knowledge/setup-archetypes-mechanics.html" class="card-link">Read Archetype Guide &rarr;</a>
+      </div>
+    </div>
+
+  </div>
 
   <footer>
-    <div>&copy; 2026 Corp Acuity Ltd. Quantitative Market Intelligence. All rights reserved.</div>
-    <div>
-      <a href="legal.html">Legal Disclaimer, Privacy Policy & Terms</a>
-    </div>
+    &copy; 2026 Corp Acuity Ltd. Institutional Market Intelligence & Research Lab.
   </footer>
 
   <script>
-    if (localStorage.getItem('corpacuity_unlocked') === 'true') {
-      const b = document.getElementById('navBadge');
-      if (b) {
-        b.innerText = "Status: Beta Access Unlocked";
-        b.classList.add("unlocked");
+    var pdfDoc = null,
+        pageNum = 1,
+        pageRendering = false,
+        pageNumPending = null,
+        scale = 1.6,
+        canvas = document.getElementById('pdf-canvas'),
+        ctx = canvas ? canvas.getContext('2d') : null;
+
+    function renderPage(num) {
+      pageRendering = true;
+      pdfDoc.getPage(num).then(function(page) {
+        var viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        var renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        var renderTask = page.render(renderContext);
+
+        renderTask.promise.then(function() {
+          pageRendering = false;
+          if (pageNumPending !== null) {
+            renderPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+
+      document.getElementById('page-num').textContent = num;
+      document.getElementById('prev-page').disabled = (num <= 1);
+      document.getElementById('next-page').disabled = (num >= pdfDoc.numPages);
+    }
+
+    function queueRenderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num;
+      } else {
+        renderPage(num);
       }
     }
 
-    async function hydrateMacroPanel() {
-      try {
-        const res = await fetch('terminal_feed.json?cache_bust=' + Date.now());
-        if (!res.ok) return;
-        const data = await res.json();
-        const macro = data.macro;
-        if (!macro) return;
-
-        const regEl = document.getElementById('liveRegimeStatus');
-        regEl.innerText = macro.regime_status || "AMBER: ROTATIONAL ACCUMULATION";
-        if (macro.regime_status && macro.regime_status.includes("GREEN")) {
-          regEl.style.color = "var(--green)";
-          regEl.style.borderColor = "rgba(74, 222, 128, 0.4)";
-          regEl.style.background = "rgba(74, 222, 128, 0.15)";
-        } else if (macro.regime_status && macro.regime_status.includes("RED")) {
-          regEl.style.color = "var(--red)";
-          regEl.style.borderColor = "rgba(248, 113, 113, 0.4)";
-          regEl.style.background = "rgba(248, 113, 113, 0.15)";
-        }
-
-        document.getElementById('liveBreadth').innerText = (macro.pct_above_200 || 0) + "%";
-        document.getElementById('liveExposure').innerText = macro.max_exposure || "30% - 60%";
-        document.getElementById('liveCrossAsset').innerText = `${macro.tnx || 4.25}% / $${macro.oil || 75.0}`;
-
-        const opexDays = macro.days_to_opx !== undefined ? macro.days_to_opx : 11;
-        const opexLabel = macro.opx_label || "Monthly OPEX";
-        document.getElementById('liveOpexClock').innerText = `${opexDays} Days (${opexLabel})`;
-
-        if (macro.seasonality) {
-          document.getElementById('seasonalityText').innerText = macro.seasonality;
-        }
-
-        document.getElementById('opexContextText').innerText = 
-          `${opexDays} trading day(s) until ${opexLabel}. Derivatives market maker gamma pinning and roll-over volume create non-fundamental single-stock false breakouts.`;
-
-        if (macro.warnings && macro.warnings.length > 0) {
-          document.getElementById('shockRadarText').innerHTML = macro.warnings.join('<br>');
-        }
-      } catch (e) {
-        console.warn("Macro widget hydration notice:", e);
-      }
+    function onPrevPage() {
+      if (pageNum <= 1) return;
+      pageNum--;
+      queueRenderPage(pageNum);
     }
 
-    hydrateMacroPanel();
+    function onNextPage() {
+      if (pageNum >= pdfDoc.numPages) return;
+      pageNum++;
+      queueRenderPage(pageNum);
+    }
+
+    // Load PDF Document
+    var url = 'daily_market_intelligence.pdf?t=' + Date.now();
+    pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+      pdfDoc = pdfDoc_;
+      document.getElementById('page-count').textContent = pdfDoc.numPages;
+      
+      var statusEl = document.getElementById('viewer-status');
+      if (statusEl) statusEl.style.display = 'none';
+      if (canvas) canvas.style.display = 'block';
+
+      renderPage(pageNum);
+    }).catch(function(error) {
+      console.error('PDF.js Error:', error);
+      var statusEl = document.getElementById('viewer-status');
+      if (statusEl) {
+        statusEl.innerHTML = 'PDF Preview unavailable. <a href="daily_market_intelligence.pdf" target="_blank" style="color: var(--accent);">Click here to download/view the PDF directly &rarr;</a>';
+      }
+    });
   </script>
+
 </body>
 </html>
