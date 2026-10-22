@@ -1,14 +1,21 @@
 {
   "pdf_path": "daily_market_intelligence.pdf",
   "date": "2026-10-22",
-  "regime_status": "AMBER: ROTATIONAL ACCUMULATION",
-  "posture_box": "\u25c6 ROTATIONAL ACCUMULATION: BUY HIGH ASYMMETRY PIVOTS \u25c6",
-  "max_exposure": "30% - 60%",
+  "regime_code": "ROTATION",
+  "regime_status": "AMBER: ROTATIONAL DIGESTION",
+  "posture_box": "[*] ROTATIONAL POSTURE: SELECTIVE HIGH-ASYMMETRY ENTRIES",
+  "max_exposure": "30% - 55%",
   "pct_above_200": 54.7,
+  "primary_ticker": "PTC",
+  "slot_tickers": [
+    "PTC",
+    "ROKU",
+    "TKR"
+  ],
   "focus_tickers": [
     "PTC",
-    "IR",
-    "ROKU"
+    "ROKU",
+    "TKR"
   ],
   "top_runner": {
     "ticker": "CXT",
@@ -42,27 +49,7 @@
     "Structural_Catalyst": "ZACKS #2 BUY",
     "Execution_Protocol": "STANDARD RUNWAY: Full swing leeway. Void entry if opened >2.5% past pivot."
   },
-  "top_htf": {
-    "Ticker": "IR",
-    "Close": 79.06,
-    "Headroom_%": 27.6,
-    "Ext_10EMA_%": 1.2,
-    "Above_200EMA_%": -0.9,
-    "Vol_Pocket_Ratio": "1.09x",
-    "Conviction_Score": 11.8,
-    "Pivot_Trigger": 79.38,
-    "Stop_Loss": 77.52,
-    "Risk_%": 2.34,
-    "R_Ratio": 11.8,
-    "ADV_20": 4327740,
-    "1Min_Vol_Hurdle": 15147,
-    "Execution_Archetype": "BREAKOUT",
-    "Category": "Pocket Pivot",
-    "Zacks_Rank": "#3 (23d)",
-    "Earnings_Risk": "Unknown/TBD",
-    "Structural_Catalyst": "TECHNICAL MOMENTUM",
-    "Execution_Protocol": "STANDARD RUNWAY: Full swing leeway. Void entry if opened >2.5% past pivot."
-  },
+  "top_htf": null,
   "top_pp": {
     "Ticker": "ROKU",
     "Close": 157.78,
@@ -79,7 +66,7 @@
     "1Min_Vol_Hurdle": 6012,
     "Execution_Archetype": "BREAKOUT",
     "Category": "Pocket Pivot",
-    "Zacks_Rank": "#1 (1d)",
+    "Zacks_Rank": "#1 (New)",
     "Earnings_Risk": "Unknown/TBD",
     "Structural_Catalyst": "ZACKS #1 STRONG BUY",
     "Execution_Protocol": "PEAK DIFFUSION: Fresh Rank 1 revision. Full swing leeway to 3.0R+ expansion."
