@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27 05:24 UTC",
+  "generated_at": "2026-10-27 10:51 UTC",
   "macro": {
     "regime_status": "RED: STRUCTURAL CONTRACTION",
     "regime_code": "CONTRACTION",
@@ -16,15 +16,15 @@
     "qqq_above_200": true,
     "tnx": 4.99,
     "tnx_5d_chg": -2.6,
-    "oil": 100.68,
-    "oil_5d_chg": 3.6,
+    "oil": 101.73,
+    "oil_5d_chg": 4.7,
     "pct_above_200": 54.3,
     "pct_below_200": 45.7,
     "momentum_count": 60,
     "sweep_count": 3,
     "warnings": [
       "\u26a1 YIELD SURGE: 10-Yr Yield at 4.99% (-2.6% 5d). Multiple drag active.",
-      "\ud83d\udee2\ufe0f OIL PRICE SPIKE: WTI Crude at $100.68/bbl (+3.6% 5d). Inflation expectations repricing."
+      "\ud83d\udee2\ufe0f OIL PRICE SPIKE: WTI Crude at $101.73/bbl (+4.7% 5d). Inflation expectations repricing."
     ],
     "calendar": [
       "IN 3 DAY(S): CORE PCE PRICE INDEX (8:30 AM ET): Benchmark Fed inflation print. (2026-10-30)",
@@ -134,27 +134,6 @@
         "Execution_Protocol": "MATURING DRIFT: Late Rank 2 drift. Trail tactical stop tightly along 10 EMA."
       },
       {
-        "Ticker": "ENSG",
-        "Close": 176.92,
-        "Headroom_%": 23.1,
-        "Above_200_%": 0.6,
-        "Hist_Now": 0.593,
-        "Vol_Ratio": "2.25x",
-        "Conviction_Score": 0.839,
-        "Pivot_Trigger": 180.75,
-        "Stop_Loss": 172.12,
-        "Risk_%": 4.77,
-        "R_Ratio": 4.84,
-        "ADV_20": 336200,
-        "1Min_Vol_Hurdle": 1176,
-        "Execution_Archetype": "BREAKOUT",
-        "Category": "Base-Reset",
-        "Zacks_Rank": "#2 (11d)",
-        "Earnings_Risk": "Unknown/TBD",
-        "Structural_Catalyst": "ZACKS #2 BUY",
-        "Execution_Protocol": "STANDARD RUNWAY: Full swing leeway. Void entry if opened >2.5% past pivot."
-      },
-      {
         "Ticker": "DOCU",
         "Close": 84.89,
         "Headroom_%": 1.2,
@@ -171,6 +150,27 @@
         "Execution_Archetype": "BREAKOUT",
         "Category": "Base-Reset",
         "Zacks_Rank": "#2 (7d)",
+        "Earnings_Risk": "Unknown/TBD",
+        "Structural_Catalyst": "ZACKS #2 BUY",
+        "Execution_Protocol": "STANDARD RUNWAY: Full swing leeway. Void entry if opened >2.5% past pivot."
+      },
+      {
+        "Ticker": "ENSG",
+        "Close": 176.92,
+        "Headroom_%": 23.1,
+        "Above_200_%": 0.6,
+        "Hist_Now": 0.593,
+        "Vol_Ratio": "2.25x",
+        "Conviction_Score": 0.839,
+        "Pivot_Trigger": 180.75,
+        "Stop_Loss": 172.12,
+        "Risk_%": 4.77,
+        "R_Ratio": 4.84,
+        "ADV_20": 336200,
+        "1Min_Vol_Hurdle": 1176,
+        "Execution_Archetype": "BREAKOUT",
+        "Category": "Base-Reset",
+        "Zacks_Rank": "#2 (11d)",
         "Earnings_Risk": "Unknown/TBD",
         "Structural_Catalyst": "ZACKS #2 BUY",
         "Execution_Protocol": "STANDARD RUNWAY: Full swing leeway. Void entry if opened >2.5% past pivot."
